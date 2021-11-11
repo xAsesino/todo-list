@@ -3,6 +3,7 @@ let tab = [];
 let indice = 0;
 
 const listchild = document.querySelector(".lists");
+const listacquis = document.querySelector(".acquis");
 const myInputli = document.getElementById("myInput");
 const addtolist = document.querySelector(".btnadd");
 
@@ -14,7 +15,10 @@ addtolist.addEventListener('click', () => {
     tab.push(myInputli.value);
     listchild.innerHTML += `
 
-            <li class="test">${myInputli.value} <button class="btndel" data-id="${myInputli.value}">XXXXXXXXXXX</button></li>
+            <li class="test">${myInputli.value} 
+            <button class="btndel" data-id="${myInputli.value}">Supprimer</button>
+            <button class="acquiss" data-id="${myInputli.value}">Accomplis !</button>
+            </li>
 
         `
     localStorage.setItem('myInputs', JSON.stringify(tab));
@@ -35,7 +39,10 @@ function JSONtab() {
 
             listchild.innerHTML += `
 
-            <li class="test">${tab[i]} <button class="btndel" data-id="${tab[i]}">XXXXXXXXXXX</button></li>
+            <li class="test">${tab[i]} 
+            <button class="btndel" data-id="${tab[i]}">Supprimer</button>
+            <button class="acquiss" data-id="${myInputli.value}">Accomplis !</button>
+            </li>
 
             `
 
@@ -46,6 +53,8 @@ function JSONtab() {
     }
 
 }
+
+
 
 function deltamere() {
 
@@ -74,6 +83,37 @@ function deltamere() {
             localStorage.setItem('myInputs', JSON.stringify(tab));
 
         })
+
+        const btnacquis = tester.querySelector('.acquiss');
+
+        btnacquis.addEventListener('click', () =>{
+
+            for (let i = 0; i < tab.length; i++) {
+
+                if(tag == tab[i]){
+
+                    indice = i;
+                
+                }
+
+            }
+
+
+            listacquis.innerHTML += `
+
+            <li class="test">${myInputli.value}<button class="btndel" data-id="">Supprimer</button>
+            <button class="acquiss" data-id="${myInputli.value}">Accomplis !</button>
+            </li>
+            
+            `
+
+            listchild.removeChild(tester);
+            localStorage.setItem('myInputs', JSON.stringify(tab));
+
+
+        })
+
+        
 
     }
 

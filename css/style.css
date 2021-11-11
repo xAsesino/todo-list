@@ -9,4 +9,64 @@ body {
   width: 100%;
 }
 
+.todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.todo h1 {
+  font-size: 150px;
+  color: wheat;
+  text-shadow: 0 8px 0 black;
+}
+
+.todo h3 {
+  font-size: 80px;
+  margin-bottom: 25px;
+  color: black;
+  text-shadow: 0 3px 0 wheat;
+}
+
+.todo input {
+  width: 300px;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.todo .btnadd {
+  width: 250px;
+  height: 25px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.todo ul {
+  border: 3px solid whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0 0 20px black, 0 0 40px black;
+  width: 40%;
+  height: 100%;
+}
+
+.todo ul li {
+  list-style: none;
+  font-size: 30px;
+  color: wheat;
+}
+
+.todo ul li button {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  background: red;
+  color: whitesmoke;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /*# sourceMappingURL=style.css.map */
