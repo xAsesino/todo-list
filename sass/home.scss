@@ -4,25 +4,9 @@
     box-sizing: border-box;
 }
 
-@mixin displayflex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body{
+    background: gray;
+    width: 100%;
 }
 
-$mobile-width: "only screen and (max-width:600px)";
-
-@media #{$mobile-width}{
-    h1{
-        background-color: blue;
-    }
-}
-
-h1{
-    font-size: 100px;
-    @include displayflex();
-
-    &:hover{
-        color: white;
-    }
-}
+@import "_main/_main.scss";

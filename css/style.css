@@ -4,19 +4,9 @@
   box-sizing: border-box;
 }
 
-@media only screen and (max-width:600px) {
-  h1 {
-    background-color: blue;
-  }
-}
-h1 {
-  font-size: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-h1:hover {
-  color: white;
+body {
+  background: gray;
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

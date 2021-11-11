@@ -1,30 +1,29 @@
+let tab = [];
 
-function tododisplay() {
+let indice = 0;
 
-    let todolists = document.querySelector(".lists");
+const listchild = document.querySelector(".lists");
+const myInputli = document.getElementById("myInput");
+const addtolist = document.querySelector(".btnadd");
 
-    todolists.innerHTML += `
-    
-        <h1>Todo - List</h1>
 
-            <input type="text" name="" id="myInput"> <button class="btnadd"> ADD TODO</button>
+JSONtab();
 
-    `
+addtolist.addEventListener('click', () => {
 
-    for (let i = 0; i < tab.length; i++) {
+    tab.push(myInputli.value);
+    listchild.innerHTML += `
 
-        todolists.innerHTML += `
-
-            <li>${tab[i]}</li>
+            <li class="test">${myInputli.value} <button class="btndel" data-id="${myInputli.value}">XXXXXXXXXXX</button></li>
 
         `
-    }
+    localStorage.setItem('myInputs', JSON.stringify(tab));
 
-    addtodo();
-    JSONtab()
-}
+    myInputli.value = "";
 
-let tab = [];
+    deltamere();
+
+})
 
 function JSONtab() {
 
@@ -32,79 +31,86 @@ function JSONtab() {
 
         tab = JSON.parse(localStorage.getItem('myInputs', tab));
 
+        for (let i = 0; i < tab.length; i++) {
+
+            listchild.innerHTML += `
+
+            <li class="test">${tab[i]} <button class="btndel" data-id="${tab[i]}">XXXXXXXXXXX</button></li>
+
+            `
+
+        }
+
+        deltamere();
+
     }
-}
-
-function listli() {
-
-    const listchild = document.querySelector(".lists");
-    const myInputli = document.getElementById("myInput");
-
-    listchild.innerHTML += `
-
-        <li>${myInputli.value}</li>
-
-    `
-
-    tab.push(myInputli.value);
 
 }
 
-function addtodo() {
+function deltamere() {
 
-    const addtolist = document.querySelector(".btnadd");
+    const lister = document.querySelectorAll('.test');
 
-    addtolist.addEventListener('click', () => {
+    for (const tester of lister) {
 
-        listli();
-        addtodo();
-    })
+        const btndelete = tester.querySelector('.btndel');
+        let tag = btndelete.getAttribute("data-id");
 
-    localStorage.setItem('myInputs', JSON.stringify(tab));
+        btndelete.addEventListener('click', () => {
+
+
+            for (let i = 0; i < tab.length; i++) {
+
+                if(tag == tab[i]){
+
+                    indice = i;
+                
+                }
+
+            }
+
+            tab.splice(indice, 1);
+            listchild.removeChild(tester);
+            localStorage.setItem('myInputs', JSON.stringify(tab));
+
+        })
+
+    }
+
 }
 
-JSONtab();
-tododisplay();
 
 
-// let tab = [];
 
-// const listchild = document.querySelector(".lists");
-// const myInputli = document.getElementById("myInput");
-// const addtolist = document.querySelector(".btnadd");
 
-// JSONtab();
 
-// addtolist.addEventListener('click', () => {
+// const btndell = document.getElementsByClassName("btndel");
+// const lister = document.querySelector(".test");
 
-//     tab.push(myInputli.value);
-//     listchild.innerHTML += `
+// for (let i = 0; i < btndell.length; i++) {
 
-//             <li>${myInputli.value}</li>
+//     btndell[i].addEventListener('click', () => {
 
-//         `
-//     localStorage.setItem('myInputs', JSON.stringify(tab));
+//         let tag = btndell[i].getAttribute("data-id");
 
-// })
+//         if (tag == myInputli.value || tag == tab[i]) {
 
-// function JSONtab() {
+//             if (indice == tab[i]) {
 
-//     if (localStorage.getItem('myInputs', tab) != null) {
+//                 indice = i;
 
-//         tab = JSON.parse(localStorage.getItem('myInputs', tab));
+//             }
 
-//         console.log("LocalStorage n'est pas vide");
+//             console.log(tag);
 
-//         for (let i = 0; i < tab.length; i++) {
+                // tab.splice(indice, 1);
+//             // listchild.removeChild(lister);
+//             
 
-//             listchild.innerHTML += `
-
-//                 <li>${tab[i]}</li>
-
-//             `
+//             // localStorage.setItem('myInputs', JSON.stringify(tab));
 
 //         }
 
-//     }
+//     })
 
 // }
