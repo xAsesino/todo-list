@@ -1,4 +1,5 @@
 let tab = [];
+let tab1 = [];
 
 let indice = 0;
 
@@ -13,6 +14,8 @@ JSONtab();
 addtolist.addEventListener('click', () => {
 
     tab.push(myInputli.value);
+    tab1.push(myInputli.value);
+    
     listchild.innerHTML += `
 
             <li class="test">${myInputli.value} 
@@ -26,6 +29,7 @@ addtolist.addEventListener('click', () => {
     myInputli.value = "";
 
     deltamere();
+    itsgood();
 
 })
 
@@ -41,7 +45,7 @@ function JSONtab() {
 
             <li class="test">${tab[i]} 
             <button class="btndel" data-id="${tab[i]}">Supprimer</button>
-            <button class="acquiss" data-id="${myInputli.value}">Accomplis !</button>
+            <button class="acquiss" data-id="${tab1[i]}">Accomplis !</button>
             </li>
 
             `
@@ -52,17 +56,32 @@ function JSONtab() {
 
     }
 
+    if (localStorage.getItem('MyGoods', tab1) != null) {
+
+        tab1 = JSON.parse(localStorage.getItem('MyGoods', tab1));
+
+        for (let i = 0; i < tab1.length; i++) {
+
+            listacquis.innerHTML += `
+            <li class="test">${tab1[i]}<button class="btndel" data-id="${tab1[i]}">Supprimer</button></li>
+            
+        
+            `
+        }
+
+        itsgood();
+
+    }
+
 }
-
-
 
 function deltamere() {
 
     const lister = document.querySelectorAll('.test');
 
-    for (const tester of lister) {
+    for (const alllister of lister) {
 
-        const btndelete = tester.querySelector('.btndel');
+        const btndelete = alllister.querySelector('.btndel');
         let tag = btndelete.getAttribute("data-id");
 
         btndelete.addEventListener('click', () => {
@@ -70,56 +89,65 @@ function deltamere() {
 
             for (let i = 0; i < tab.length; i++) {
 
-                if(tag == tab[i]){
+                if (tag == tab[i]) {
 
                     indice = i;
-                
+
                 }
 
             }
 
             tab.splice(indice, 1);
-            listchild.removeChild(tester);
+            listchild.removeChild(alllister);
             localStorage.setItem('myInputs', JSON.stringify(tab));
 
         })
-
-        const btnacquis = tester.querySelector('.acquiss');
-
-        btnacquis.addEventListener('click', () =>{
-
-            for (let i = 0; i < tab.length; i++) {
-
-                if(tag == tab[i]){
-
-                    indice = i;
-                
-                }
-
-            }
-
-
-            listacquis.innerHTML += `
-
-            <li class="test">${myInputli.value}<button class="btndel" data-id="">Supprimer</button>
-            <button class="acquiss" data-id="${myInputli.value}">Accomplis !</button>
-            </li>
-            
-            `
-
-            listchild.removeChild(tester);
-            localStorage.setItem('myInputs', JSON.stringify(tab));
-
-
-        })
-
-        
 
     }
 
 }
 
+function itsgood() {
 
+    const lister = document.querySelectorAll('.test');
+
+    for (const alllister of lister) {
+
+        const btnacquis = alllister.querySelector('.acquiss');
+        let tag1 = btnacquis.getAttribute("data-id");
+
+        btnacquis.addEventListener('click', () => {
+            
+            // tab1.push(myInputli.value);
+            
+            for (let i = 0; i < tab1.length; i++) {
+
+                listacquis.innerHTML += `
+
+                    <li class="test">${tab1[i]}<button class="btndel" data-id="${tab1[i]}">Supprimer</button></li>
+                
+                `
+            
+            }
+
+            for (let i = 0; i < tab.length; i++) {
+                
+                if (tag1 == tab[i]) {
+                    
+                    indice = i;
+                    
+                }
+                
+            }
+            
+            tab.splice(indice, 1);
+            listchild.removeChild(alllister);
+            localStorage.setItem('myInputs', JSON.stringify(tab));
+            
+        })
+        localStorage.setItem('MyGoods', JSON.stringify(tab1));
+    }
+}
 
 
 
