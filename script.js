@@ -29,7 +29,6 @@ addtolist.addEventListener('click', () => {
     myInputli.value = "";
 
     deltamere();
-
 })
 
 function JSONtab() {
@@ -114,22 +113,28 @@ function itsgood() {
     for (const alllister of lister) {
 
         const btnacquis = alllister.querySelector('.acquiss');
+        let tag = btnacquis.getAttribute("data-id");
 
         btnacquis.addEventListener('click', () => {
 
             for (let i = 0; i < tab1.length; i++) {
 
-                listacquis.innerHTML += `
+                
+                if(tag == tab1[i]){
+                    
+                    listacquis.innerHTML += `
 
-                    <li class="tester">${tab1[i]}<button class="btndel">Supprimer</button></li>
+                    <li class="tester">${tab1[i]}</li>
                 
                 `
-
-                tab.splice(indice, 1);
-                listchild.removeChild(alllister);
-                localStorage.setItem('myInputs', JSON.stringify(tab));
+                }
 
             }
+
+            tab.splice(indice, 1);
+            listchild.removeChild(alllister);
+            localStorage.setItem('myInputs', JSON.stringify(tab));
+            
         })
         localStorage.setItem('MyGoods', JSON.stringify(tab1));
     }
