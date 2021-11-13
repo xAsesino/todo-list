@@ -1,3 +1,5 @@
+"use strict";
+
 let tab = [];
 let tab1 = [];
 
@@ -7,8 +9,6 @@ const listchild = document.querySelector(".lists");
 const listacquis = document.querySelector(".acquis");
 const myInputli = document.getElementById("myInput");
 const addtolist = document.querySelector(".btnadd");
-
-JSONtab();
 
 addtolist.addEventListener('click', () => {
 
@@ -30,6 +30,8 @@ addtolist.addEventListener('click', () => {
 
     deltamere();
 })
+
+
 
 function JSONtab() {
 
@@ -54,32 +56,36 @@ function JSONtab() {
 
     }
 
-    // if (localStorage.getItem('MyGoods', tab1) != null) {
+}
 
-    //     tab1 = JSON.parse(localStorage.getItem('MyGoods', tab1));
+function JSONtab1() {
 
-    //     for (let i = 0; i < tab1.length; i++) {
+    if (localStorage.getItem('MyGoods', tab1) != null) {
 
-    //         listacquis.innerHTML += `
-    //         <li class="test">${tab1[i]}<button class="btndel" data-id="${tab1[i]}">Supprimer</button></li>
+        tab1 = JSON.parse(localStorage.getItem('MyGoods', tab1));
+
+        for (let i = 0; i < tab1.length; i++) {
+
+            listacquis.innerHTML += `
+            <li class="test">${tab1[i]}</li>
 
 
-    //         `
-    //     }
+            `
+        }
 
-    //     itsgood();
+        itsgood();
 
-    // }
+    }
 
 }
 
 function deltamere() {
 
-    const lister = document.querySelectorAll('.test');
+    const lister = document.querySelectorAll(".test");
 
-    for (const alllister of lister) {
+    for (const listerr of lister) {
 
-        const btndelete = alllister.querySelector('.btndel');
+        const btndelete = listerr.querySelector(".btndel");
         let tag = btndelete.getAttribute("data-id");
 
         btndelete.addEventListener('click', () => {
@@ -96,7 +102,7 @@ function deltamere() {
             }
 
             tab.splice(indice, 1);
-            listchild.removeChild(alllister);
+            listchild.removeChild(listerr);
             localStorage.setItem('myInputs', JSON.stringify(tab));
 
         })
@@ -108,23 +114,23 @@ function deltamere() {
 
 function itsgood() {
 
-    const lister = document.querySelectorAll('.test');
+    const lister = document.querySelectorAll(".test");
 
-    for (const alllister of lister) {
+    for (const listerr of lister) {
 
-        const btnacquis = alllister.querySelector('.acquiss');
+        const btnacquis = listerr.querySelector(".acquiss");
         let tag = btnacquis.getAttribute("data-id");
 
         btnacquis.addEventListener('click', () => {
 
             for (let i = 0; i < tab1.length; i++) {
 
-                
-                if(tag == tab1[i]){
-                    
+
+                if (tag == tab1[i]) {
+
                     listacquis.innerHTML += `
 
-                    <li class="tester">${tab1[i]}</li>
+                    <li class="test">${tab1[i]}</li>
                 
                 `
                 }
@@ -132,11 +138,13 @@ function itsgood() {
             }
 
             tab.splice(indice, 1);
-            listchild.removeChild(alllister);
+            listchild.removeChild(listerr);
             localStorage.setItem('myInputs', JSON.stringify(tab));
-            
+
         })
         localStorage.setItem('MyGoods', JSON.stringify(tab1));
     }
 }
 
+JSONtab();
+JSONtab1();
