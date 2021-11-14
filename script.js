@@ -62,8 +62,8 @@ function JSONtab() {
 
             listacquis.innerHTML += `
             <li class="test">${tab1[i]} 
-            <button class="btndel" data-id="${tab[i]}">Supprimer</button>
-            <button class="acquiss" data-id="${tab1[i]}">Accomplis !</button>
+            <button class="whendate" data-id="${tab[i]}">When date</button>
+            <button class="lvl" data-id="${tab1[i]}">Level</button>
             </li>
             
             
@@ -130,7 +130,7 @@ function itsgood() {
 
                     <li class="test">${tab1[i]}
                     <button class="whendate" data-id="${tab[i]}">When date</button>
-                    <button class="tzetzet" data-id="${tab1[i]}"></button>
+                    <button class="lvl" data-id="${tab1[i]}">Level</button>
                     </li>
                     
                     `
