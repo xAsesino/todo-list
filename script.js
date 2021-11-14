@@ -21,7 +21,7 @@ addtolist.addEventListener('click', () => {
             <button class="btndel" data-id="${myInputli.value}">Supprimer</button>
             <button class="acquiss" data-id="${myInputli.value}">Accomplis !</button>
             </li>
-
+            
         `
     localStorage.setItem('myInputs', JSON.stringify(tab));
     localStorage.setItem('MyGoods', JSON.stringify(tab1));
@@ -30,8 +30,6 @@ addtolist.addEventListener('click', () => {
 
     deltamere();
 })
-
-
 
 function JSONtab() {
 
@@ -56,10 +54,6 @@ function JSONtab() {
 
     }
 
-}
-
-function JSONtab1() {
-
     if (localStorage.getItem('MyGoods', tab1) != null) {
 
         tab1 = JSON.parse(localStorage.getItem('MyGoods', tab1));
@@ -67,10 +61,14 @@ function JSONtab1() {
         for (let i = 0; i < tab1.length; i++) {
 
             listacquis.innerHTML += `
-            <li class="test">${tab1[i]}</li>
-
-
+            <li class="test">${tab1[i]} 
+            <button class="btndel" data-id="${tab[i]}">Supprimer</button>
+            <button class="acquiss" data-id="${tab1[i]}">Accomplis !</button>
+            </li>
+            
+            
             `
+            
         }
 
         itsgood();
@@ -130,9 +128,12 @@ function itsgood() {
 
                     listacquis.innerHTML += `
 
-                    <li class="test">${tab1[i]}</li>
-                
-                `
+                    <li class="test">${tab1[i]}
+                    <button class="whendate" data-id="${tab[i]}">When date</button>
+                    <button class="tzetzet" data-id="${tab1[i]}"></button>
+                    </li>
+                    
+                    `
                 }
 
             }
@@ -147,4 +148,3 @@ function itsgood() {
 }
 
 JSONtab();
-JSONtab1();
